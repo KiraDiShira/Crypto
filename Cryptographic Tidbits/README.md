@@ -32,13 +32,14 @@ A **polyalphabetic cipher** is one based on substitution using multiple substitu
 Cryptanalysis is used to breach cryptographic security systems and gain access to the contents of encrypted messages, even if the cryptographic key is unknown.
 
 • Brute Force Attack (BFA) – try every possible key
+
 • BFA requires O(key space) operations to break 
+
 • Spurious messages (additional keys that produce meaningful but incorrect plain text messages)
 
 The more cipher text we have, the less likely it is that incorrect keys will produce seemingly meaningful messages. The amount of text that is expected to reduce the number of spurious messages to zero is known as the **unicity distance**.
  
-Though we design our system to try to avoid this, we generally assume that an attacker will have sufficient cipher text material so  
-that only one key, the correct one, will result in meaningful plain text.
+Though we design our system to try to avoid this, we generally assume that an attacker will have sufficient cipher text material so that only one key, the correct one, will result in meaningful plain text.
  
 Weaknesses in the design of the cipher or how it is used often result in the ability to develop cryptanalytic techniques  
 that can break the cipher in fewer key trials or a comparable amount of other computation than a brute force attack would require.
