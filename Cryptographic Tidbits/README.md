@@ -40,8 +40,6 @@ Cryptanalysis is used to breach cryptographic security systems and gain access t
 The more cipher text we have, the less likely it is that incorrect keys will produce seemingly meaningful messages. The amount of text that is expected to reduce the number of spurious messages to zero is known as the **unicity distance**.
  
 Though we design our system to try to avoid this, we generally assume that an attacker will have sufficient cipher text material so that only one key, the correct one, will result in meaningful plain text.
- 
-Weaknesses in the design of the cipher or how it is used often result in the ability to develop cryptanalytic techniques  
-that can break the cipher in fewer key trials or a comparable amount of other computation than a brute force attack would require.
-A cipher is considered to be computationally secure if the best known attack against it is not significantly better than brute force. How much better constitute significantly better is somewhat subjective, and usually related to whether it brings the attack within the range of capabilities that currently exist or likely to exist in the foreseeable future, specifically before the utility of the intercepted traffic expires.
+
+Weaknesses in the design of the cipher or how it is used often result in the ability to develop cryptanalytic techniques that can break the cipher in fewer key trials or a comparable amount of other computation than a brute force attack would require. A cipher is considered to be computationally secure if the best known attack against it is not significantly better than brute force. How much better constitute significantly better is somewhat subjective, and usually related to whether it brings the attack within the range of capabilities that currently exist or likely to exist in the foreseeable future, specifically before the utility of the intercepted  traffic expires.
 
