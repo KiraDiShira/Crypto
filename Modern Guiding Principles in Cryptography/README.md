@@ -1,6 +1,6 @@
 - [Index](https://github.com/KiraDiShira/Crypto#crypto)   
 
-# Cryptographic Tidbits
+# Modern Guiding Principles in Cryptography
 
 - [Codes vs chiphers](#codes-vs-chiphers)   
 - [Transposition vs substitution](#transposition-vs-substitution)
@@ -9,37 +9,30 @@
 
 ## Codes vs chiphers
 
-**Code**: mapping entire sentences to shorter words
+Kerckhoffs' Principle states that a cryptosystem should remain secure, even if the adversary knows every detail of the system, except the key. This underscores the need to safeguard the security of the key, which opens its own Pandora's box of complications. Included in this is the *key distribution problem*, the resulting desirability of public key cryptosystems and the need and role for trusted third parties. One thing that is frequently overlooked, often with disastrous consequences, are how human factors impact the practical security of a cryptosystem.
 
-<img src="https://github.com/KiraDiShira/Crypto/blob/master/Cryptographic%20Tidbits/Images/cac1.png" />
+*1883 – Auguste **Kerckhoffs’ design principles**
+•  System should not have complex rules 
 
-**Cipher**: Character/symbol replacement. Do not involve meaning. Instead they are mechanical operations, known as algorithms, that are performed on individual or small chunks of letters. For example, in the Caesar Cipher we saw how each letter in the alphabet was mapped to a different letter: A=D,  B=E, and C=F, according to a specific shift, in this case three. This kind of cipher is known as a shift cipher
+• Algorithms shouldn’t need to be secret 
 
-## Transposition vs substitution
+• Security should rely on simple keys
 
-In cryptography, a **substitution cipher** is a method of encrypting by which units of plaintext are replaced with ciphertext, according to a fixed system; the "units" may be single letters (the most common), pairs of letters, triplets of letters, mixtures of the above, and so forth. The receiver deciphers the text by performing the inverse substitution.
-
-Substitution ciphers can be compared with **transposition ciphers**. In a transposition cipher, the units of the plaintext are rearranged in a different and usually quite complex order, but the units themselves are left unchanged. By contrast, in a substitution cipher, the units of the plaintext are retained in the same sequence in the ciphertext, but the units themselves are altered.
-
-## Monoalphabetic vs polyalphabetic
-
-A **monoalphabetic cipher** is a substitution cipher in which the cipher alphabet is fixed through the encryption process. These ciphers are highly susceptible to frequency analysis.
-
-A **polyalphabetic cipher** is one based on substitution using multiple substitution alphabets. A good example would be the Vigenère Cipher which is basically a Caesar’s Cipher applied multiple times successively on the same plaintext. That is, use the Caesar Cipher on the plaintext. Then take that output and use a different substitution alphabet and then take that output and do it again with yet another substitution alphabet.
-
-## Cryptanalysis
-
-Cryptanalysis is used to breach cryptographic security systems and gain access to the contents of encrypted messages, even if the cryptographic key is unknown.
-
-• Brute Force Attack (BFA) – try every possible key
-
-• BFA requires O(key space) operations to break 
-
-• Spurious messages (additional keys that produce meaningful but incorrect plain text messages)
-
-The more cipher text we have, the less likely it is that incorrect keys will produce seemingly meaningful messages. The amount of text that is expected to reduce the number of spurious messages to zero is known as the **unicity distance**.
+One thing that Kerckhoffs didn't directly address, most likely because in his time cyphers were used on very small scales compared to what became commonplace in the 20th century with the advent of industrial scale cryptography, is know as the **key distribution problem**. This problem reflects the difficulty of generating sufficient key material, securely distributing it to the parties that need it, and being able to detect when and if there's been a compromise.
  
-Though we design our system to try to avoid this, we generally assume that an attacker will have sufficient cipher text material so that only one key, the correct one, will result in meaningful plain text.
+ Let's consider how the number of keys needed grows as the scope of a cryptosystem grows. If you have end users, then the greatest security is achieved if each pair of users has a unique key. A strong advantage of using such pairwise keys is that if a key is compromised, it only endangers the traffic between that pair of individuals,.although this could be parlayed into additional key breaches. Because the benefit to the enemy of compromising one key is minimal, the resources that they're likely to put into the effort is likewise probably going to be limited. But this only true if it is feasible to properly manage all of the keys.
+ 
+With N participants each needing N- 1 keys to communicate with the other people, the total number of keys that you need is on the order of N squared. If you have a small team of operatives, say 10, then you only need about 50 keys, and this is not too unreasonable. But today we need to secure communication networks that have literally millions of users, some human and some not, such as communication relays and in-place sensor networks.
+ 
+For the best security, you would want every pair of users to have their own key, but 1 million users would require 1 trillion keys. And then somehow you would need to distribute 1 million of these keys to each of 1 million users. This is completely unmanageable, and 1 million nodes is small compared to something the scope of the global information grid. An alternative is to have large groups of users share a common key, to reduce the total number of keys to a manageable level. The problem here is that the the larger the group, the more valuable a key compromise becomes to your adversary, and hence the greater the resources they may commit to the effort.
+ 
+This is an addition to the fact that just having the key known to a larger group of people, increases the likelihood that someone is going to get careless and exposed the key.
+ 
+Furthermore, it becomes increasing likely that any bridge that does happen, will not be detected by the other users, who will continue using the compromised key. About the only thing worse than your key becoming known to your enemy is for you not to know that it has.
+ 
+No one has yet devised a truly practical and scalable solution to the key distribution problem. But in the mid 1970s, a revolutionary alternative was developed. The basic idea stems from asking whether it was possible to use secrets that didn't have to be shared. Something that had previously not even been considered, since its absurdity would have seemed obvious. It was taken as a given that secret communications relied on shared secrets, now known as symmetric keys. But let's rephrase the question slightly as two separate questions. First, is it possible to use two different but related keys, such that two people can communicate securely as long as each one has one of the keys? This is what is known as asymmetric cryptography. Second, if this is possible, we then ask, is it possible to make one of the keys public knowledge without compromising the other key? If this has a solution, then Alice can generate both keys, keep one all to herself and publish the other for Bob to look up, as can even Mallory and everyone else. As the saying goes, if you want to keep something a secret, never tell anyone. If two people know a secret, then it's no longer a secret. This is known as public key cryptography, and it's become perhaps the most single critical component in today's vibrant online economy.
 
-Weaknesses in the design of the cipher or how it is used often result in the ability to develop cryptanalytic techniques that can break the cipher in fewer key trials or a comparable amount of other computation than a brute force attack would require. A cipher is considered to be computationally secure if the best known attack against it is not significantly better than brute force. How much better constitute significantly better is somewhat subjective, and usually related to whether it brings the attack within the range of capabilities that currently exist or likely to exist in the foreseeable future, specifically before the utility of the intercepted  traffic expires.
+On one level this would seem to trivially solve the key distribution problem. Alice can publish her public key in as many ways that she wants, and Bob only needs to be able to find one of them. But there's a really big catch, how does Bob know that the key he finds is really Alice's public key? Perhaps Mallory made up a pair of keys and published one of those in Alice's name. Bob has to be able to trust that the key he looks up really is the one published by Alice.
+Whether we are talking about symmetric or asymmetric cryptography, nearly any practical cryptosystem that operates on any meaningful scale currently uses some form of trusted third party. The role of the trusted third party, usually named Trent in our cast of characters, varies depending on the system.
+
 
