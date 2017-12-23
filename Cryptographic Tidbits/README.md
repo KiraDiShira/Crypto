@@ -2,12 +2,11 @@
 
 # Cryptographic Tidbits
 
-- [Introduction to branches](#introduction-to-branches)   
-- [How merge works](#how-merge-works)
-- [Detached HEAD](#detached-head)
+- [Codes vs chipers](#codes-vs-chiphers)   
+- [Transposition vs substitution](#transposition-vs-substitution)
+- [Modern Guiding Principles in Cryptography](#modern-guiding-principles-in-cryptography)
 
-
-## Introduction to branches
+## Codes vs chipers
 
 When first commit is made, git creates "master" branch.
 Branches are stored in this folder:
