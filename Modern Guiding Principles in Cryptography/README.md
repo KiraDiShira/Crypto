@@ -2,13 +2,6 @@
 
 # Modern Guiding Principles in Cryptography
 
-- [Codes vs chiphers](#codes-vs-chiphers)   
-- [Transposition vs substitution](#transposition-vs-substitution)
-- [Monoalphabetic vs polyalphabetic](#monoalphabetic-vs-polyalphabetic)
-- [Cryptanalysis](#cryptanalysis)
-
-## Codes vs chiphers
-
 Kerckhoffs' Principle states that a cryptosystem should remain secure, even if the adversary knows every detail of the system, except the key. This underscores the need to safeguard the security of the key, which opens its own Pandora's box of complications. Included in this is the *key distribution problem*, the resulting desirability of public key cryptosystems and the need and role for trusted third parties. One thing that is frequently overlooked, often with disastrous consequences, are how human factors impact the practical security of a cryptosystem.
 
 *1883 – Auguste **Kerckhoffs’ design principles**
