@@ -9,5 +9,7 @@ The art and science of secret communications
 ## Information Security Goals
 
 • Confidentiality – Can’t read our messages 
+
 • Integrity – Can’t change our messages 
+
 • Authenticity – Can’t forge our messages
