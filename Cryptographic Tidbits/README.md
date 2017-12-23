@@ -4,6 +4,7 @@
 
 - [Codes vs chiphers](#codes-vs-chiphers)   
 - [Transposition vs substitution](#transposition-vs-substitution)
+- [Monoalphabetic vs polyalphabetic](#monoalphabetic-vs-polyalphabetic)
 - [Modern Guiding Principles in Cryptography](#modern-guiding-principles-in-cryptography)
 
 ## Codes vs chiphers
