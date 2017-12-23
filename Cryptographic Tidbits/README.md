@@ -5,7 +5,7 @@
 - [Codes vs chiphers](#codes-vs-chiphers)   
 - [Transposition vs substitution](#transposition-vs-substitution)
 - [Monoalphabetic vs polyalphabetic](#monoalphabetic-vs-polyalphabetic)
-- [Modern Guiding Principles in Cryptography](#modern-guiding-principles-in-cryptography)
+- [Cryptanalysis](#cryptanalysis)
 
 ## Codes vs chiphers
 
@@ -21,5 +21,11 @@ In cryptography, a **substitution cipher** is a method of encrypting by which un
 
 Substitution ciphers can be compared with **transposition ciphers**. In a transposition cipher, the units of the plaintext are rearranged in a different and usually quite complex order, but the units themselves are left unchanged. By contrast, in a substitution cipher, the units of the plaintext are retained in the same sequence in the ciphertext, but the units themselves are altered.
 
+## Monoalphabetic vs polyalphabetic
 
+A **monoalphabetic cipher** is a substitution cipher in which the cipher alphabet is fixed through the encryption process. These ciphers are highly susceptible to frequency analysis.
+
+A **polyalphabetic cipher** is one based on substitution using multiple substitution alphabets. A good example would be the Vigenère Cipher which is basically a Caesar’s Cipher applied multiple times successively on the same plaintext. That is, use the Caesar Cipher on the plaintext. Then take that output and use a different substitution alphabet and then take that output and do it again with yet another substitution alphabet.
+
+## Cryptanalysis
 
