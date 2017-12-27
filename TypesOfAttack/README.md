@@ -3,7 +3,7 @@
 # Types of attack
 
 - [Attacks on encryption schemes](#attacks-on-encryption-schemes)   
-- [Side-channel attacks](#side-channel attacks)
+- [Side-channel attacks](#side-channel-attacks)
 
 ## Attacks on encryption schemes
 
