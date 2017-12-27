@@ -6,12 +6,12 @@
 
 ## Attacks on encryption schemes
 
-**Code**: mapping entire sentences to shorter words
+1. A ciphertext-only attack is one where the adversary (or cryptanalyst) tries to deduce the decryption key or plaintext by only observing ciphertext. Any encryption scheme vulnerable to this type of attack is considered to be completely insecure.
 
-<img src="https://github.com/KiraDiShira/Crypto/blob/master/Cryptographic%20Tidbits/Images/cac1.png" />
+2. A known-plaintext attack is one where the adversary has a quantity of plaintext and corresponding ciphertext. This type of attack is typically only marginally more difficult to mount.
 
-**Cipher**: Character/symbol replacement. Do not involve meaning. Instead they are mechanical operations, known as algorithms, that are performed on individual or small chunks of letters. For example, in the Caesar Cipher we saw how each letter in the alphabet was mapped to a different letter: A=D,  B=E, and C=F, according to a specific shift, in this case three. This kind of cipher is known as a shift cipher
+3. A chosen-plaintext attack is one where the adversary chooses plaintext and is then given corresponding ciphertext. Subsequently, the adversary uses any information deduced in order to recover plaintext corresponding to previously unseen ciphertext.
 
-## Transposition vs substitution
+4. An adaptive chosen-plaintext attack is a chosen-plaintext attack wherein the choice of plaintext may depend on the ciphertext received from previous requests.
 
-In cryptography, a **substitution cipher** is a method of encrypting by which units of plaintext are replaced with ciphertext, according to a fixed system; the "units" may be single letters (the most common), pairs of letters, triplets of letters, mixtures of the above, and so forth. The receiver deciphers the text by performing the inverse substitution.
+5. A chosen-ciphertext attack is one where the adversary selects the ciphertext and is then given the corresponding plaintext. One way to mount such an attack is for the adversary to gain access to the equipment used for decryption (but not the decryption key, which may be securely embedded in the equipment). The objective is then to be able, without access to such equipment, to deduce the plaintext from (different) ciphertext.
