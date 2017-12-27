@@ -50,8 +50,30 @@ It's plaintext:
 
 ## Multi-Character Frequencies
 
+We saw that, as powerful as it is, relying on the relative frequencies of single characters in a piece of ciphertext that we know or suspect was encrypted using a monoalphabetic cipher, often isn't sufficient to really break open a cipher system. But even so, this tool alone reduces the computational security of such a cipher enormously.
+
+Let's assume, somewhat optimistically, that our use of single-character frequencies lets us correctly group the cipher text characters into the most frequently used 9, the least frequently used 9, and the remaining 8 in the middle. From there, we decide to brute force all of the resulting combinations. For a set of 8 characters, there are 68 factorial, or 40,320 permutations, and for 9, there are 362,880. The number of keys we would have to try is 9 factorial times 8 factorial times 9 factorial, which is about 5 times 10 to the 15th. Definitely still a huge number, but for every key that we have to examine, we have eliminated about 10 to the 11th or 100 billion keys that we don't. This all by itself is an enormous break in the security.
+
+Instead of looking at single letters in isolation, we can look at how they appear in relation to other characters.
+
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc4.png" />
+
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc5.png" />
+
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc6.png" />
+
+Noting the T is one of our most frequently use letters, while H is much closer to the middle of the pack. If we examine the most frequently occurring digraphs in our ciphertext, and one of them exhibits this trait. We have quite likely identified both T and H. Similarly, a moderately frequent letter followed by a quite frequent letter is more likely to be HE. Then there are sequences such as QU. We know that in English, the letter Q is almost always followed by U. The letters Q, Z, J, and X, are all at about the same frequency. In addition, they are sufficiently rare, so that their rates in a short piece of ciphertext will likely deviate significantly from that expected. But if we have enough ciphertext, and can identify that one of our least frequently occurring characters is always followed by specific other symbol, it is quite reasonable to suspect that the first character is Q and the second is U, which might help us distinguish U from Z, or other nearby letters. We can leverage the least frequently used ones to an even greater degree. There are several letters that are seldom followed by other than a few letters.
+
+We've already seen Q, which is virtually never followed by anything other than u. But other letters, such as J and Z are seldom followed by any letter other than a vowel, while other letters are commonly followed by most any other letter. Not only can we use this trait to help identify the mappings, but once we have identified these letters then any place they are followed by anything other than that small set that normally follows them, we can suspect that we found the space between two words. Finding word breaks can be a bit challenging at times. Particularly, if we have only mapped a few of the characters and have likely made some mistakes. So anything we can do to help identify breaks can be a significant help. This is where the other end of the frequency spectrum can be leveraged, since we have many digraphs that virtually never appear in plain text. And when they do, it is usually the result of the first character being the end of one word and the second being the beginning of the next. Something that can be useful in identifying word breaks in the partially recovered plain text.
+
+Another thing that can help here is that individual letters vary significantly in the likelihood of appearing as the first or the last letter of a word. Since more than half of all words end in one of just four letters, we can scan our partial plain text for these 4 letters (E,T,D,S) and see if a word ending in each one is readily apparent.
+
+Now let's narrow our focus even tighter on the 26 diagraphs that consist of repeated characters known as double letter diagraphs.
+
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc7.png" />
+
+Perhaps somewhat surprisingly, the frequency distribution of these double-letter digraphs is significantly different than for their appearances as single characters.
+
+We can use both the single letter and double letter frequencies at the same time by plotting our 26 letters on a two-dimensional plot with the single letter frequency on one axis and the double letter frequency on the other. We do this for both sets of letters, the plain text and cyphertext languages. This will frequently allow us to make very good guesses for a significant fraction of our letters.
+
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc8.png" />
