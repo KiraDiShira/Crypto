@@ -6,6 +6,8 @@
 
 ## Attacks on encryption schemes
 
+The objective of the following attacks is to systematically recover plaintext from ciphertext, or even more drastically, to deduce the decryption key
+
 1. A **ciphertext-only attack** is one where the adversary (or cryptanalyst) tries to deduce the decryption key or plaintext by only observing ciphertext. Any encryption scheme vulnerable to this type of attack is considered to be completely insecure.
 
 2. A **known-plaintext attack** is one where the adversary has a quantity of plaintext and corresponding ciphertext. This type of attack is typically only marginally more difficult to mount.
