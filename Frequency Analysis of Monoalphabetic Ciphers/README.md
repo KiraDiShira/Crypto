@@ -3,6 +3,8 @@
 # Frequency Analysis of Monoalphabetic Ciphers
 
 - [One time pad](#one-time-pad)   
+- [Single character frequency analysis](#single-character-frequency-analysis)
+- [Multi-Character Frequencies](#multi-character-frequencies)
 
 ## One time pad
 
@@ -30,10 +32,24 @@ Let's consider single character frequency analysis. Here is the more or less sta
 
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc1.png" />
 
+If our cipher is simply a generic Cesar shift cipher, we can simply look for the most frequently used letter and assume that it represents E. That will be correct far more often than not. But if that doesn't work, we could assume either that the most frequently used letter was T, or that the second most frequently used letter is E. If neither of these pans out, we can continue down a decision tree that, on average, will allow us to break the cipher much more quickly than brute force, which of course isn't that difficult either in this case.
 
+But imagine if we can correctly guess the correct mapping for just the top six characters. We would have about half of the ciphertext deciphered, and it is very likely we would be able to then spot several places where the only possible mappings for some of the other characters would be readily apparent. Each additional character we map, not only increases the amount of plaintext that we can leverage, but reduces the possible choices for the remaining characters. The other end of the distribution can also be quite helpful. The least frequently used third, or nine characters, only account for 7.5% of all characters, and the bottom six account for only 2%. If we can identify most of these, at least as a group, then that significantly reduces the number of choices for the remaining unknown characters. At this point you might be thinking that breaking a random monoalphabetic cipher is trivially easy, just map the letter frequencies of the ciphertext to the plaintext. Unfortunately, this is seldom the case.
 
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc2.png" />
+
+First, keep in mind the statistical nature of the letter frequencies and how they vary from subject area and author among other factors. Further, ciphertext tend to be fairly short, for instance the procedure for enigma prohibited messages longer than 250 characters, and many messages were well under 100. As with most things, the less data you have the more it will tend to deviate from the average. Furthermore, it is quite common for the originator of the ciphertext to modify the plaintext to make it even shorter, not unlike people today do when they're texting, which not only introduces a lot of unfamiliar and seemingly random letter sequences into the plaintext, but it also distorts the letter frequency distribution of an already very small sample of material. Even if you have perfectly recovered the plaintext it might not be immediately obvious. Consider the following 250 character intercept. Is this plaintext or is it ciphertext?
+
+This is from Moby Dick by Herman Melville. I extracted this from a public domain copy of the work and generated a plaintext file by only keeping the letters, converted to uppercase, and placing them in groups of five, with ten groups per line.This or something similar was quite common practice, so as to remove spaces, punctuation, and other cues that are extremely helpful to a cryptanalyst.
+
+But other important non-letter content was converted into letter equivalence, such as using an uncommon letter for a question mark, which distorts the frequency distribution, or spelling out numbers. We'll ignore this purely for the sake of convenience, but it gives a glimpse into the fact that in enciphering messages involves quite a bit of pre and post processing on the part of the operators.
+
+It's plaintext:
+
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc3.png" />
+
+## Multi-Character Frequencies
+
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc4.png" />
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc5.png" />
 <img src="https://github.com/KiraDiShira/Crypto/blob/master/Frequency%20Analysis%20of%20Monoalphabetic%20Ciphers/Images/famc6.png" />
